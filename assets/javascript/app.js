@@ -22,7 +22,8 @@
           var pRating = $("<p>").text("Rating: " + rating);
 
           // Retrieving the URL for the image
-          var gifURL = response.data[i].images.downsized_medium.url;
+          var gifURL = response.data[i].images.downsized_still.url;
+          //response.data[i].images.downsized_medium.url;
 
           // Creating an element to hold the image
           var gifButton = $("<img>").attr(
@@ -44,11 +45,7 @@
 
       // Function for displaying movie data
       function createButtons() {
-
-        // Deleting the movies prior to adding new movies
-        // (this is necessary otherwise you will have repeat buttons)
-        $("#buttons-view").empty();
-
+        
         // Looping through the array of bands
         for (var i = 0; i < bands.length; i++) {
 
@@ -87,9 +84,9 @@
       //change img src from active to still when the gif is clicked on
       //to change the source of the image 
       //response.data[i].images.downsized_still
-      function gifPause(event){
-        var index = event.target.attributes.data.value;
+      //function gifAnimate(event){
+        //var index = event.target.attributes.data.value;
 
-        var element = $("img[data=index]");
-      }
-      $(document).on("click", "img", gifPause);
+        //var element = $("img[data=index]");
+      //}
+     
