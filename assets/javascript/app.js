@@ -43,7 +43,7 @@
 
       }
 
-      // Function for displaying movie data
+      // Function for displaying gifs
       function createButtons() {
         
         // Looping through the array of bands
@@ -89,4 +89,7 @@
 
         //var element = $("img[data=index]");
       //}
+
+      //I could not change the src of the imgs to that they would animate.
+      //Every time I trie to chage the src the code broke
      
