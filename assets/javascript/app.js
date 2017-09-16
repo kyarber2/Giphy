@@ -1,5 +1,4 @@
 // Base array of bands
-//to change the source of the image response.data[0].images.downsized_still
       var bands = ["Foo Fighters", "Phantogram", "Future Islands", "Sia", "Red Hot Chili Peppers", "Yeah Yeah Yeahs", "Phoenix (band)", "Bruno Mars", "Lady Gaga", "Rihanna", "Kesha"];
       // displayBandGif function displays the gifs
       function displayBandGif() {
@@ -12,7 +11,7 @@
           url: queryURL,
           method: "GET"
         }).done(function(response) {
-
+          for (i = 0; i < response.data.length; i++){
           // Creating a div to hold the gifs
           var gifDiv = $("<div class='gif'>");
 
@@ -22,13 +21,14 @@
           // Creating an element to have the rating displayed
           var pRating = $("<p>").text("Rating: " + rating);
 
-         
-
           // Retrieving the URL for the image
-          var gifURL = response.data[0].images.downsized_medium.url;
+          var gifURL = response.data[i].images.downsized_medium.url;
 
           // Creating an element to hold the image
-          var gifButton = $("<img>").attr("src", gifURL);
+          var gifButton = $("<img>").attr(
+            {"src": gifURL,
+            "data": i
+             });
 
           // Appending the image
           gifDiv.append(gifButton);
@@ -36,8 +36,9 @@
           //adding the gif at the end
           $("#band-form").append(gifDiv);
            // Displaying the rating
-          gifDiv.append("Rating: " + response.data[0].rating);
-        });
+          gifDiv.append("Rating: " + response.data[i].rating);
+        }
+      });
 
       }
 
@@ -82,3 +83,13 @@
 
       // Calling the function that will display the buttons based on the initial array
       createButtons();
+
+      //change img src from active to still when the gif is clicked on
+      //to change the source of the image 
+      //response.data[i].images.downsized_still
+      function gifPause(event){
+        var index = event.target.attributes.data.value;
+
+        var element = $("img[data=index]");
+      }
+      $(document).on("click", "img", gifPause);
